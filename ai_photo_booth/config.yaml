@@ -3,7 +3,7 @@ name: AI Photo Booth
 version: "0.1.0"
 slug: ai-photo-booth
 description: AI Photo Booth
-url: "https://github.com/ajfiresen/ai-photo-booth"
+url: "https://github.com/ajfriesen/ai-photo-booth"
 arch:
   - aarch64
   - amd64

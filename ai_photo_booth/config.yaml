@@ -1,17 +1,51 @@
-# https://developers.home-assistant.io/docs/apps/configuration#app-configuration
-name: AI Photo Booth
+name: "AI Photo Booth"
+description: "Receives camera snapshots, transforms them to medieval style via OpenAI, uploads to Cloudflare R2, and pushes QR code back to Home Assistant."
 version: "0.1.0"
 slug: ai-photo-booth
-description: AI Photo Booth
-url: "https://github.com/ajfriesen/ai-photo-booth"
+url: "https://github.com/ajfriesen/ha-apps"
 arch:
   - aarch64
   - amd64
 init: false
+
+homeassistant_api: true
+ingress: false
+
 map:
-  - share:rw
+  - media:rw
+
+ports:
+  8585/tcp: 8585
+
+ports_description:
+  8585/tcp: "Webhook receiver (HA posts snapshot here)"
+
+image: "ghcr.io/ajfriesen/ai-photo-booth/{arch}"
+
 options:
-  message: "Hello world..."
+  openai_api_key: ""
+  r2_account_id: ""
+  r2_access_key_id: ""
+  r2_secret_access_key: ""
+  r2_bucket_name: "ai-photobooth"
+  r2_public_url: "https://photos.yourdomain.com"
+  ha_qr_entity: "input_text.photobooth_qr_url"
+  ha_medieval_entity: "input_text.photobooth_medieval_url"
+  media_folder: "/media/canon_photos"
+  webhook_token: ""
+  skip_ai: false
+  image_prompt: "Transform this photograph into a detailed medieval oil painting portrait. Keep the person's face recognizable. Add period-appropriate clothing, background, and artistic style from the 15th century Flemish tradition."
+
 schema:
-  message: "str?"
-image: "ghcr.io/ajfriesen/ai-photo-booth"
+  openai_api_key: str
+  r2_account_id: str
+  r2_access_key_id: str
+  r2_secret_access_key: str
+  r2_bucket_name: str
+  r2_public_url: str
+  ha_qr_entity: str
+  ha_medieval_entity: str
+  media_folder: str
+  webhook_token: str
+  skip_ai: bool
+  image_prompt: str

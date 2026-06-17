@@ -20,7 +20,7 @@ ports:
 ports_description:
   8585/tcp: "Webhook receiver (HA posts snapshot here)"
 
-image: "ghcr.io/ajfriesen/ai-photo-booth/{arch}"
+image: "ajfriesen/ai-photo-booth"
 
 options:
   openai_api_key: ""
@@ -33,6 +33,7 @@ options:
   ha_medieval_entity: "input_text.photobooth_medieval_url"
   media_folder: "/media/canon_photos"
   webhook_token: ""
+  license_key: ""
   skip_ai: false
   image_prompt: "Transform this photograph into a detailed medieval oil painting portrait. Keep the person's face recognizable. Add period-appropriate clothing, background, and artistic style from the 15th century Flemish tradition."
 
@@ -47,5 +48,6 @@ schema:
   ha_medieval_entity: str
   media_folder: str
   webhook_token: str
+  license_key: str
   skip_ai: bool
   image_prompt: str

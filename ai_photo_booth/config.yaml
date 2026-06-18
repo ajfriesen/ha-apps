@@ -35,7 +35,13 @@ options:
   webhook_token: ""
   license_key: ""
   skip_ai: false
-  image_prompt: "Transform this photograph into a detailed medieval oil painting portrait. Keep the person's face recognizable. Add period-appropriate clothing, background, and artistic style from the 15th century Flemish tradition."
+  image_model: "gpt-image-2"
+  image_size: "1024x1536"
+  image_quality: "high"
+  output_format: "jpeg"
+  output_compression: 80
+  input_fidelity: "high"
+  image_prompt: "Keep the person's face recognizable. Change the clothing to medieval clothing."
 
 schema:
   openai_api_key: str
@@ -50,4 +56,10 @@ schema:
   webhook_token: str
   license_key: str
   skip_ai: bool
+  image_model: "list(gpt-image-1|gpt-image-2)"
+  image_size: "list(1024x1024|1536x1024|1024x1536)"
+  image_quality: "list(low|medium|high|auto)"
+  output_format: "list(jpeg|png|webp)"
+  output_compression: int
+  input_fidelity: "list(low|high)"
   image_prompt: str

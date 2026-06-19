@@ -1,6 +1,6 @@
 name: "AI Photo Booth"
 description: "Receives camera snapshots, transforms them to medieval style via OpenAI, uploads to Cloudflare R2, and pushes QR code back to Home Assistant."
-version: "0.1.0"
+version: "0.1.1"
 slug: ai-photo-booth
 url: "https://github.com/ajfriesen/ha-apps"
 arch:
@@ -9,7 +9,8 @@ arch:
 init: false
 
 homeassistant_api: true
-ingress: false
+ingress: true
+ingress_port: 8585
 
 map:
   - media:rw
@@ -57,7 +58,7 @@ schema:
   license_key: str
   skip_ai: bool
   image_model: "list(gpt-image-1|gpt-image-2)"
-  image_size: "list(1024x1024|1536x1024|1024x1536)"
+  image_size: "list(auto|1024x1024|1536x1024|1024x1536|2048x2048|2048x1152|3840x2160|2160x3840)"
   image_quality: "list(low|medium|high|auto)"
   output_format: "list(jpeg|png|webp)"
   output_compression: int

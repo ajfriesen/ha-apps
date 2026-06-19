@@ -1,0 +1,64 @@
+name: "AI Photo Booth Dev"
+description: "Receives camera snapshots, transforms them to medieval style via OpenAI, uploads to Cloudflare R2, and pushes QR code back to Home Assistant."
+version: "latest"
+slug: ai-photo-booth-dev
+url: "https://github.com/ajfriesen/ha-apps"
+arch:
+  - aarch64
+  - amd64
+init: false
+
+homeassistant_api: true
+ingress: true
+ingress_port: 8585
+
+map:
+  - media:rw
+
+ports:
+  8585/tcp: 8585
+
+ports_description:
+  8585/tcp: "Webhook receiver (HA posts snapshot here)"
+
+image: "ajfriesen/ai-photo-booth"
+
+options:
+  openai_api_key: ""
+  r2_account_id: ""
+  r2_access_key_id: ""
+  r2_secret_access_key: ""
+  r2_bucket_name: "ai-photobooth"
+  r2_public_url: "https://photos.yourdomain.com"
+  ha_qr_entity: "input_text.photobooth_qr_url"
+  ha_medieval_entity: "input_text.photobooth_medieval_url"
+  media_folder: "/media/canon_photos"
+  webhook_token: ""
+  license_key: ""
+  skip_ai: false
+  image_model: "gpt-image-2"
+  image_size: "1024x1536"
+  image_quality: "high"
+  output_format: "jpeg"
+  output_compression: 80
+  image_prompt: "Keep the person's face recognizable. Change the clothing to medieval clothing."
+
+schema:
+  openai_api_key: str
+  r2_account_id: str
+  r2_access_key_id: str
+  r2_secret_access_key: str
+  r2_bucket_name: str
+  r2_public_url: str
+  ha_qr_entity: str
+  ha_medieval_entity: str
+  media_folder: str
+  webhook_token: str
+  license_key: str
+  skip_ai: bool
+  image_model: "list(gpt-image-1|gpt-image-2)"
+  image_size: "list(auto|1024x1024|1536x1024|1024x1536|2048x2048|2048x1152|3840x2160|2160x3840)"
+  image_quality: "list(low|medium|high|auto)"
+  output_format: "list(jpeg|png|webp)"
+  output_compression: int
+  image_prompt: str

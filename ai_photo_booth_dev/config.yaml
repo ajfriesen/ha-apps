@@ -35,13 +35,7 @@ options:
   media_folder: "/media/canon_photos"
   webhook_token: ""
   license_key: ""
-  skip_ai: false
-  image_model: "gpt-image-2"
-  image_size: "1024x1536"
-  image_quality: "high"
-  output_format: "jpeg"
-  output_compression: 80
-  image_prompt: "Keep the person's face recognizable. Change the clothing to medieval clothing."
+  log_level: "info"
 
 schema:
   openai_api_key: str
@@ -55,10 +49,4 @@ schema:
   media_folder: str
   webhook_token: str
   license_key: str
-  skip_ai: bool
-  image_model: "list(gpt-image-1|gpt-image-2)"
-  image_size: "list(auto|1024x1024|1536x1024|1024x1536|2048x2048|2048x1152|3840x2160|2160x3840)"
-  image_quality: "list(low|medium|high|auto)"
-  output_format: "list(jpeg|png|webp)"
-  output_compression: int
-  image_prompt: str
+  log_level: "list(info|debug)"

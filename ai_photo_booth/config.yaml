@@ -41,7 +41,6 @@ options:
   image_quality: "high"
   output_format: "jpeg"
   output_compression: 80
-  input_fidelity: "high"
   image_prompt: "Keep the person's face recognizable. Change the clothing to medieval clothing."
 
 schema:
@@ -62,5 +61,4 @@ schema:
   image_quality: "list(low|medium|high|auto)"
   output_format: "list(jpeg|png|webp)"
   output_compression: int
-  input_fidelity: "list(low|high)"
   image_prompt: str

@@ -35,7 +35,6 @@ options:
   r2_secret_access_key: ""
   r2_bucket_name: "ai-photobooth"
   r2_public_url: "https://photos.yourdomain.com"
-  ha_qr_entity: "input_text.photobooth_qr_url"
   ha_medieval_entity: "input_text.photobooth_medieval_url"
   ha_image_entity: "input_text.photobooth_image_url"
   ha_next_entity: "input_text.photobooth_next_url"
@@ -71,7 +70,6 @@ schema:
   r2_secret_access_key: password
   r2_bucket_name: str
   r2_public_url: str
-  ha_qr_entity: str
   ha_medieval_entity: str
   ha_image_entity: str
   ha_next_entity: str

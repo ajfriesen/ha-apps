@@ -1,5 +1,5 @@
 name: "AI Photo Booth Dev"
-description: "Receives camera snapshots, transforms them to medieval style via OpenAI, uploads to Cloudflare R2, and pushes QR code back to Home Assistant."
+description: "Receives camera snapshots, transforms them to medieval style via OpenAI, uploads to Cloudflare R2, and publishes a guest page with download, share and donation links."
 version: "0.2.0.dev17"
 slug: ai-photo-booth-dev
 url: "https://github.com/ajfriesen/ha-apps"
@@ -32,6 +32,8 @@ options:
   r2_public_url: "https://photos.yourdomain.com"
   ha_qr_entity: "input_text.photobooth_qr_url"
   ha_medieval_entity: "input_text.photobooth_medieval_url"
+  ha_image_entity: "input_text.photobooth_image_url"
+  ha_next_entity: "input_text.photobooth_next_url"
   media_folder: "/media/canon_photos"
   webhook_token: ""
   license_key: ""
@@ -49,6 +51,14 @@ options:
 # NOTE: this file is the manifest Home Assistant actually reads. The source
 # repo ai-photo-booth has its own config.yaml and CI only sed's the version
 # line into this one, so schema changes must be made HERE too.
+#
+# What that costs when it is forgotten, from 0.2.0.dev16: the build shipped
+# ha_image_entity and ha_next_entity, this file did not, so the Supervisor
+# never wrote them to options.json and BOTH features silently did nothing -
+# no error, just two input_text helpers stuck at unknown. The add-on now
+# falls back to its built-in defaults for missing keys and logs a warning
+# naming them, so a lag here degrades loudly instead of silently. Adding the
+# keys here is still what makes them editable in the Supervisor UI.
 schema:
   openai_api_key: password
   r2_account_id: str
@@ -58,6 +68,8 @@ schema:
   r2_public_url: str
   ha_qr_entity: str
   ha_medieval_entity: str
+  ha_image_entity: str
+  ha_next_entity: str
   media_folder: str
   webhook_token: password
   license_key: password

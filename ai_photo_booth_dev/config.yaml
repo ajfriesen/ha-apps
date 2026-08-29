@@ -35,11 +35,10 @@ options:
   r2_secret_access_key: ""
   r2_bucket_name: "ai-photobooth"
   r2_public_url: "https://photos.yourdomain.com"
-  ha_medieval_entity: "input_text.photobooth_medieval_url"
+  ha_page_entity: "input_text.photobooth_page_url"
   ha_image_entity: "input_text.photobooth_image_url"
   ha_next_entity: "input_text.photobooth_next_url"
   media_folder: "/media/canon_photos"
-  webhook_token: ""
   license_key: ""
   log_level: "info"
 
@@ -70,10 +69,9 @@ schema:
   r2_secret_access_key: password
   r2_bucket_name: str
   r2_public_url: str
-  ha_medieval_entity: str
+  ha_page_entity: str
   ha_image_entity: str
   ha_next_entity: str
   media_folder: str
-  webhook_token: password
   license_key: password
   log_level: "list(info|debug)"

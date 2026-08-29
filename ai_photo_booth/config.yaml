@@ -11,6 +11,11 @@ init: false
 homeassistant_api: true
 ingress: true
 ingress_port: 8585
+# Sidebar entry for the ingress panel. panel_icon is an MDI NAME, not a file -
+# icon.png/logo.png are the add-on store artwork and have nothing to do with
+# the sidebar. Without this it falls back to the generic mdi:puzzle.
+panel_icon: mdi:camera-iris
+panel_title: "Fotobox"
 
 map:
   - media:rw

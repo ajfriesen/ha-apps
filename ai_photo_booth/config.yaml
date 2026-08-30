@@ -1,6 +1,6 @@
 name: "AI Photo Booth"
 description: "Receives camera snapshots, transforms them to medieval style via OpenAI, uploads to Cloudflare R2, and pushes QR code back to Home Assistant."
-version: "0.1.1"
+version: "0.2.0"
 slug: ai-photo-booth
 url: "https://github.com/ajfriesen/ha-apps"
 arch:

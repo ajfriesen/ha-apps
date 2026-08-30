@@ -45,15 +45,11 @@ options:
   r2_bucket_name: "ai-photobooth"
   r2_public_url: "https://photos.yourdomain.com"
   ha_page_entity: "input_text.photobooth_page_url"
+  ha_image_entity: "input_text.photobooth_image_url"
+  ha_next_entity: "input_text.photobooth_next_url"
   media_folder: "/media/canon_photos"
   license_key: ""
-  skip_ai: false
-  image_model: "gpt-image-2"
-  image_size: "1024x1536"
-  image_quality: "high"
-  output_format: "jpeg"
-  output_compression: 80
-  image_prompt: "Keep the person's face recognizable. Change the clothing to medieval clothing."
+  log_level: "info"
 
 # password instead of str masks these in the Supervisor UI. DISPLAY masking
 # only: the values still sit in plain text in the add-on options store and are
@@ -67,6 +63,24 @@ options:
 # NOTE: this file is the manifest Home Assistant actually reads. The source
 # repo ai-photo-booth has its own config.yaml and CI only sed's the version
 # line into this one, so schema changes must be made HERE too.
+#
+# What that costs when it is forgotten, twice over. Until 0.2.0 this file still
+# offered skip_ai, image_model, image_size, image_quality, output_format,
+# output_compression and image_prompt. Those moved into the add-on's own
+# settings UI in 0.1.x, so anything typed into them here was read into the
+# config and then immediately overwritten by the stored runtime settings - a row
+# of knobs in the Supervisor UI that looked authoritative and did nothing.
+#
+# The reverse also happened: the build shipped ha_image_entity and
+# ha_next_entity, this file did not, so the Supervisor never wrote them to
+# options.json and both features silently did nothing. The add-on now falls back
+# to built-in defaults for missing keys and logs a warning naming them, so that
+# direction degrades loudly. Listing a key here is still what makes it editable
+# in the Supervisor UI.
+#
+# Removing a key is safe for existing installs: Supervisor ignores stored
+# options that are no longer in the schema and logs a warning
+# (supervisor/apps/options.py, "does not exist in the schema").
 schema:
   openai_api_key: password
   r2_access_key_id: str
@@ -75,12 +89,8 @@ schema:
   r2_bucket_name: str
   r2_public_url: str
   ha_page_entity: str
+  ha_image_entity: str
+  ha_next_entity: str
   media_folder: str
   license_key: password
-  skip_ai: bool
-  image_model: "list(gpt-image-1|gpt-image-2)"
-  image_size: "list(auto|1024x1024|1536x1024|1024x1536|2048x2048|2048x1152|3840x2160|2160x3840)"
-  image_quality: "list(low|medium|high|auto)"
-  output_format: "list(jpeg|png|webp)"
-  output_compression: int
-  image_prompt: str
+  log_level: "list(info|debug)"

@@ -1,6 +1,6 @@
 name: "AI Photo Booth Dev"
 description: "Receives camera snapshots, transforms them to medieval style via OpenAI, uploads to Cloudflare R2, and publishes a guest page with download, share and donation links."
-version: "0.2.0.dev21"
+version: "0.2.0.dev22"
 slug: ai-photo-booth-dev
 url: "https://github.com/ajfriesen/ha-apps"
 arch:

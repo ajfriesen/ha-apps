@@ -30,12 +30,11 @@ image: "ajfriesen/ai-photo-booth"
 
 options:
   openai_api_key: ""
-  r2_account_id: ""
   r2_access_key_id: ""
   r2_secret_access_key: ""
+  r2_endpoint: ""
   r2_bucket_name: "ai-photobooth"
   r2_public_url: "https://photos.yourdomain.com"
-  r2_jurisdiction: "default"
   ha_page_entity: "input_text.photobooth_page_url"
   media_folder: "/media/canon_photos"
   license_key: ""
@@ -52,7 +51,7 @@ options:
 # readable through the Supervisor API. It stops shoulder-surfing and
 # screenshots, not someone with host access.
 #
-# r2_account_id and r2_access_key_id stay str on purpose - an account id is not
+# r2_endpoint and r2_access_key_id stay str on purpose - an endpoint URL is not
 # a credential, and an access key id is the public half of the pair. Masking
 # them would only make a wrong-key mismatch harder to spot.
 #
@@ -61,12 +60,11 @@ options:
 # line into this one, so schema changes must be made HERE too.
 schema:
   openai_api_key: password
-  r2_account_id: str
   r2_access_key_id: str
   r2_secret_access_key: password
+  r2_endpoint: str
   r2_bucket_name: str
   r2_public_url: str
-  r2_jurisdiction: "list(default|eu|fedramp)"
   ha_page_entity: str
   media_folder: str
   license_key: password

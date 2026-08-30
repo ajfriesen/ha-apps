@@ -35,6 +35,7 @@ options:
   r2_secret_access_key: ""
   r2_bucket_name: "ai-photobooth"
   r2_public_url: "https://photos.yourdomain.com"
+  r2_jurisdiction: "default"
   ha_page_entity: "input_text.photobooth_page_url"
   ha_image_entity: "input_text.photobooth_image_url"
   ha_next_entity: "input_text.photobooth_next_url"
@@ -69,6 +70,7 @@ schema:
   r2_secret_access_key: password
   r2_bucket_name: str
   r2_public_url: str
+  r2_jurisdiction: "list(default|eu|fedramp)"
   ha_page_entity: str
   ha_image_entity: str
   ha_next_entity: str

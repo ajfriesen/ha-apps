@@ -20,11 +20,19 @@ panel_title: "Fotobox Dev"
 map:
   - media:rw
 
-ports:
-  8585/tcp: 8585
-
-ports_description:
-  8585/tcp: "Webhook receiver (HA posts snapshot here)"
+# No ports: mapping on purpose. The dashboard has no authentication of its own,
+# and since 0.2.0.dev23 it can edit the guest page HTML, so anything that can
+# reach POST /settings can put arbitrary JavaScript on pages served from the
+# public photo domain to every guest who scans a QR code. Ingress is
+# authenticated by Home Assistant, so that is the only way in.
+#
+# Home Assistant Core still reaches the add-on over the Supervisor's internal
+# network, which needs no host port. The rest_command must use the add-on's
+# hostname - its slug with underscores turned into dashes - NOT the host name:
+#
+#   http://49e94de4-ai-photo-booth-dev:8585/process_local
+#
+# The 49e94de4 prefix is this repository's id and differs per install.
 
 image: "ajfriesen/ai-photo-booth"
 

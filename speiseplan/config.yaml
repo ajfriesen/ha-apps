@@ -1,6 +1,6 @@
 name: "SpeisePlan"
 description: "Weekly meal planner — plan dinners, collect recipes, snap photos of what you cooked."
-version: "1.0.2"
+version: "1.1.0"
 slug: speiseplan
 url: "https://github.com/ajfriesen/SpeisePlan"
 arch:
@@ -22,8 +22,13 @@ image: "ghcr.io/ajfriesen/speiseplan"
 
 options:
   password: ""
+  # Token for the read-only JSON API the Home Assistant integration uses.
+  # Leave blank and SpeisePlan generates one on first start; either way the
+  # current value is shown on its Settings page.
+  api_token: ""
   timezone: ""
 
 schema:
   password: "password?"
+  api_token: "password?"
   timezone: "str?"

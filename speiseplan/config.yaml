@@ -1,6 +1,6 @@
 name: "SpeisePlan"
 description: "Weekly meal planner — plan dinners, collect recipes, snap photos of what you cooked."
-version: "2.0.0"
+version: "2.1.0"
 slug: speiseplan
 url: "https://github.com/ajfriesen/SpeisePlan"
 arch:
@@ -16,28 +16,29 @@ ingress_port: 8080
 panel_icon: mdi:silverware-fork-knife
 panel_title: "SpeisePlan"
 
-# No ports: mapping on purpose. As of 2.0.0 SpeisePlan has no login of its own —
-# ingress is the front door, and Home Assistant authenticates that. Publishing
-# 8080 on the LAN would hand anyone on the network full access, including the
-# read-only JSON API, which no longer takes a token either. If you want it
-# reachable outside Home Assistant, put a reverse proxy in front and add the
-# password there.
+# Ingress is the everyday front door and Home Assistant authenticates it. The
+# host port exists for one job: a phone scanning the QR code that a display
+# shows in place of a missing recipe photo. Ingress URLs carry a per-session
+# token, so they cannot be printed into a QR code — only a direct address can.
 #
-# Home Assistant Core still reaches the add-on over the Supervisor's internal
-# network, which needs no host port. The SpeisePlan integration must therefore
-# use the add-on's hostname — its slug with underscores turned into dashes —
-# NOT your Home Assistant host:
-#
-#   http://49e94de4-speiseplan:8080
-#
-# The 49e94de4 prefix is this repository's id and differs per install; the
-# add-on's own log prints it at startup. The integration still asks for a token:
-# type anything, it is ignored.
+# SpeisePlan has no login of its own, so anything that reaches this port has
+# full access to the plan and the JSON API. That is the trade for the scan.
+# Put a reverse proxy in front and add basic auth there if the LAN is not
+# trusted, then point public_url at the proxy.
+ports:
+  8080/tcp: 8080
+ports_description:
+  8080/tcp: "Direct access, for QR code scans"
 
 image: "ghcr.io/ajfriesen/speiseplan"
 
 options:
+  # Where a phone can reach SpeisePlan — this is what the QR code encodes, so
+  # it must be resolvable from the phone, not from Home Assistant. Leave it
+  # blank and recipes without a photo simply have no image to serve.
+  public_url: ""
   timezone: ""
 
 schema:
+  public_url: "url?"
   timezone: "str?"

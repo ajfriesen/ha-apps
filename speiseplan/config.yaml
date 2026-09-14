@@ -1,6 +1,6 @@
 name: "SpeisePlan"
 description: "Weekly meal planner — plan dinners, collect recipes, snap photos of what you cooked."
-version: "2.1.0"
+version: "2.2.0"
 slug: speiseplan
 url: "https://github.com/ajfriesen/SpeisePlan"
 arch:
